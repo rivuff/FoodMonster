@@ -1,16 +1,11 @@
 import { RestaurantCard } from "./ResturantCard"
 import { restaurantList } from "../constants"
 import { useState, useEffect } from "react"
-import  App from "./Shimmer";
+import  Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
-
-function filterData(restaurants, searchText) {
-    const filteredData = restaurants.filter((restaurant)=>{
-        return restaurant.data.name.toLowerCase().includes(searchText.toLowerCase());
-    });
-
-    return filteredData;
-}
 
 
 const Body = ()=>{
@@ -21,8 +16,13 @@ const Body = ()=>{
     useEffect(()=>{
         getResturants();
     }, []);
-    
-    
+
+    const online= useOnline();
+
+    if(online==false){
+        return <h1>Seems you are offline, check your wifi connection</h1>
+    }
+
     async function getResturants(){
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.519142&lng=88.373719&page_type=DESKTOP_WEB_LISTING");
     
@@ -37,7 +37,7 @@ const Body = ()=>{
     //Not rendered component (early return)
     if(!allRestaurants) return null;
     
-    return (allRestaurants.length==0)? ( <App/> ):(
+    return (allRestaurants.length==0)? ( <Shimmer/> ):(
         <>
         <div className="search-continaer">
             <input
@@ -63,11 +63,16 @@ const Body = ()=>{
                 (
                     (filteredRestaurants.length==0)?  <h1>No restaurant found</h1>
                     : (filteredRestaurants.map((restaurant) =>{  
-                        return (restaurant==null) ? (<App/>) : (<RestaurantCard {...restaurant.data} key={restaurant.data.id}/>)
+                        return (<>
+                            <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}>
+                            <RestaurantCard {...restaurant.data} />
+                            </Link> 
+                            </>  
+                        )  
                     }))
                         
                 )    
-                
+
             }
         </div>
         </>
