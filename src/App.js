@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client'
 import HeaderComponent from './components/Header';
 import Body from './components/Body';
@@ -11,7 +11,11 @@ import ContactUs from './components/ContactUs';
 import { ResturantMenu } from './components/ResturantMenu';
 import SignIn from './components/form';
 import Profile from './components/ProfileClass';
+import { Shimmer } from 'react-shimmer';
 
+
+//Chuncking / Code Spliting / lazy loading / Dynamic bundling / on demand loading / dynamic importing
+const Instamart = lazy(()=> import("./components/Instamart"))
 
 const AppLayout = ()=>{
     return (
@@ -53,6 +57,13 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element:<SignIn/>
+            },
+            {
+                path:"/instamart",
+                element:
+                 <Suspense fallback={<Shimmer/>}>
+                    <Instamart/>
+                </Suspense>
             }
         ]
     }
