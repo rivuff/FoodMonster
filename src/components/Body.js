@@ -1,7 +1,7 @@
 import { RestaurantCard } from "./ResturantCard"
 import { restaurantList } from "../constants"
 import { useState, useEffect } from "react"
-import  Shimmer from "./Shimmer";
+import  MenuShimmer  from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
@@ -37,7 +37,7 @@ const Body = ()=>{
     //Not rendered component (early return)
     if(!allRestaurants) return null;
     
-    return (allRestaurants.length==0)? ( <Shimmer/> ):(
+    return (allRestaurants.length==0)? ( <MenuShimmer/> ):(
         <>
         <div className="p-2 mb-2 shadow-md flex justify-center bg-gray-50">
             <div className="">

@@ -12,18 +12,20 @@ import { ResturantMenu } from './components/ResturantMenu';
 import SignIn from './components/form';
 import Profile from './components/ProfileClass';
 import { Shimmer } from 'react-shimmer';
-
+import { Provider } from 'react-redux';
+import store from './utils/store';
+import Cart from './components/Cart';
 
 //Chuncking / Code Spliting / lazy loading / Dynamic bundling / on demand loading / dynamic importing
 const Instamart = lazy(()=> import("./components/Instamart"))
 
 const AppLayout = ()=>{
     return (
-        <>
-        <HeaderComponent/>
-        <Outlet/>
-        <Footer/>
-        </>
+        <Provider store={store}>
+            <HeaderComponent/>
+            <Outlet/>
+            <Footer/>
+        </Provider>
     )
 }
 
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
                  <Suspense fallback={<Shimmer/>}>
                     <Instamart/>
                 </Suspense>
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
             }
         ]
     }

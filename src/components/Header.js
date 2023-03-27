@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import SignIn from "./form";
@@ -20,6 +21,10 @@ const HeaderComponent = ()=>{
     const login = SignIn();
 
     const {user}= useContext(UserContext);
+
+    const cartItems = useSelector(store => store.cart.items)
+    console.log(cartItems);
+
     return (
         <div className='flex justify-between bg-green-50 shadow-md p-3 mb-1' >
         <Title/>
@@ -29,6 +34,7 @@ const HeaderComponent = ()=>{
                 <li className="px-2"><Link to='/about'> About</Link></li>
                 <li className="px-2"><Link to='/contactUs'> contactUs</Link></li>
                 <li className="px-2"><Link to='/instamart'>Instamart</Link></li>
+                <li className="px-2"><Link to='/cart'>cart - {cartItems.length}</Link></li>
             </ul>
         </div>
         <span className="font-bold p-10 text-red-600"> {user.name}</span>
