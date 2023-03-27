@@ -57,7 +57,7 @@ export const ResturantMenu = ()=> {
                                 <p className="text-xs text-gray-500 overflow-hidden mb-1"> ₹{item.card.info.price/100}</p>
                                 <p className="w-80 h-9 text-xs text-gray-500 overflow-hidden">{item.card.info.description}</p>
 
-                                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2" onClick={()=>addFoodItem(item)}>Add</button>
+                                <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2" onClick={()=>addFoodItem(item)}>Add</button>
                             </div>
 
                         </div>
