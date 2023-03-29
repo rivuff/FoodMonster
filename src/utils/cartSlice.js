@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Action } from "@remix-run/router";
+
 
 const cartSlice = createSlice({
     name: "cart",
     initialState:{
-        items: []
+        items: [], 
     },
+    
     reducers: {
         addItem: (state, action) =>{
             state.items.push(action.payload)
@@ -15,11 +16,17 @@ const cartSlice = createSlice({
         },
         clearCart: (state)=>{
             state=[];
+        },
+        updateItem: (state, action)=>{
+            const ind = state.items.findIndex((i)=> i.card?.info?.id === action.payload.id);
+            if(ind>-1){
+                state.items[ind].qty = action.payload.qty;
+            }
         }
     }
 })
 
 
-export const {addItem, removeItem, clearCart} = cartSlice.actions;
+export const {addItem, removeItem, clearCart, updateItem} = cartSlice.actions;
 
 export default cartSlice.reducer
