@@ -30,6 +30,7 @@ const AppLayout = ()=>{
 }
 
 const router = createBrowserRouter([
+    
     {
         path: "/",
         element: <AppLayout/>,

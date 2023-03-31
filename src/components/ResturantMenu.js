@@ -1,11 +1,12 @@
 // import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addItem } from '../utils/cartSlice';
+import { addItem, removeItem } from '../utils/cartSlice';
 import { updateItem } from '../utils/cartSlice';
 import useRestaurant from '../utils/useRestaurant';
 import MenuShimmer from './Shimmer';
 import useItemTotal from '../utils/useItemTotal';
+import { TfiMinus, TfiPlus } from "react-icons/tfi";
 
 export const ResturantMenu = () => {
   const IMG_CDN_URL =
@@ -13,7 +14,7 @@ export const ResturantMenu = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const cartItems = useSelector(store => store.cart.items);
-  console.log();
+  console.log(cartItems[0]?.qty);
 
   const restaurant = useRestaurant(id);
 
@@ -30,8 +31,9 @@ export const ResturantMenu = () => {
       (i) => i.card?.info?.id === item?.card?.info?.id
     );
 
-    if (existingItem) {
+    // console.log("item "+ {existingItem});
 
+    if (existingItem) {
       dispatch(
         updateItem({
         //   id: existingItem.item?.data?.info?.id,
@@ -42,6 +44,33 @@ export const ResturantMenu = () => {
     } else {
       dispatch(addItem({ ...item, qty: 1 }));
     }
+  };
+
+  const removeFoodItem = item => {
+    console.log(item?.card?.info?.id);
+
+    const existingItem = cartItems.find(
+      (i) => i.card?.info?.id === item?.card?.info?.id
+    );
+
+    // console.log("item "+ {existingItem});
+
+    if (existingItem) {
+      if(existingItem.qty>1){
+        dispatch(
+          updateItem({
+          //   id: existingItem.item?.data?.info?.id,
+            id: existingItem.card.info.id,
+            qty: existingItem.qty-1
+          })
+        );
+      }
+      else{
+        dispatch(removeItem({
+          id: existingItem.card.info.id,
+          }))
+      } 
+    } 
   };
 
   console.log({ cartItems });
@@ -102,8 +131,7 @@ export const ResturantMenu = () => {
         </h1>
 
         {Object.values(
-          restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
-            ?.cards[1]?.card?.card.itemCards
+          restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.itemCards
         ).map(item => (
           <>
             <div
@@ -132,14 +160,37 @@ export const ResturantMenu = () => {
                 <p className="w-80 h-9 text-xs text-gray-500 overflow-hidden">
                   {item.card.info.description}
                 </p>
-
-                <button
+                
+                {cartItems.findIndex((i) => i.card?.info?.id === item?.card?.info?.id)==-1?  <button 
                   type="button"
                   className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2"
                   onClick={() => addFoodItem(item)}
                 >
                   Add
-                </button>
+                </button>:<>
+
+                <div className="flex border border-gray w-16 justify-around items-center rounded-md">
+                    <button
+                     onClick={() => removeFoodItem(item)}
+                      className="text-xl"
+                    >
+                      -
+                    </button>
+                    <p className="text-green text-sm">{cartItems[cartItems.findIndex((i) => i.card?.info?.id === item?.card?.info?.id)]?.qty}</p>
+                    <button
+                      className="hover:scale-110 delay-100 transition-all rounded-md"
+                      onClick={()=> addFoodItem(item)}
+                    >
+                      +
+                    </button>
+                  </div>
+                {/* <div className='flex'>
+                <TfiMinus  onClick={() => removeFoodItem(item)} /> {cartItems[cartItems.findIndex((i) => i.card?.info?.id === item?.card?.info?.id)]?.qty}  <TfiPlus onClick={()=> addFoodItem(item)}/>
+                </div> */}
+                </> 
+                }
+
+                 
               </div>
             </div>
           </>
