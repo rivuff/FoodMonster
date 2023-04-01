@@ -1,12 +1,10 @@
 // import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addItem, removeItem } from '../utils/cartSlice';
-import { updateItem } from '../utils/cartSlice';
+import { addItem, removeItem,updateItem } from '../utils/cartSlice';
 import useRestaurant from '../utils/useRestaurant';
 import MenuShimmer from './Shimmer';
-import useItemTotal from '../utils/useItemTotal';
-import { TfiMinus, TfiPlus } from "react-icons/tfi";
+
 
 export const ResturantMenu = () => {
   const IMG_CDN_URL =
@@ -27,7 +25,7 @@ export const ResturantMenu = () => {
   const addFoodItem = item => {
     console.log(item?.card?.info?.id);
 
-    const existingItem = cartItems.find(
+    const existingItem = cartItems?.find(
       (i) => i.card?.info?.id === item?.card?.info?.id
     );
 
@@ -49,7 +47,7 @@ export const ResturantMenu = () => {
   const removeFoodItem = item => {
     console.log(item?.card?.info?.id);
 
-    const existingItem = cartItems.find(
+    const existingItem = cartItems?.find(
       (i) => i.card?.info?.id === item?.card?.info?.id
     );
 
@@ -75,7 +73,6 @@ export const ResturantMenu = () => {
 
   console.log({ cartItems });
 
-  const getItemTotal = useItemTotal();
 
   return !restaurant ? (
     <>
@@ -176,7 +173,7 @@ export const ResturantMenu = () => {
                     >
                       -
                     </button>
-                    <p className="text-green text-sm">{cartItems[cartItems.findIndex((i) => i.card?.info?.id === item?.card?.info?.id)]?.qty}</p>
+                    <p className="text-green text-sm">{cartItems[cartItems?.findIndex((i) => i.card?.info?.id === item?.card?.info?.id)]?.qty}</p>
                     <button
                       className="hover:scale-110 delay-100 transition-all rounded-md"
                       onClick={()=> addFoodItem(item)}
@@ -189,8 +186,6 @@ export const ResturantMenu = () => {
                 </div> */}
                 </> 
                 }
-
-                 
               </div>
             </div>
           </>

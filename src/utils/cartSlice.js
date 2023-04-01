@@ -18,7 +18,8 @@ const cartSlice = createSlice({
             console.log(state.items);
         },
         clearCart: (state)=>{
-            state=[];
+            console.log("sr"+ state.items);
+            state.items= [];
         },
         updateItem: (state, action)=>{
             const ind = state.items.findIndex((i)=> i.card?.info?.id === action.payload.id);
