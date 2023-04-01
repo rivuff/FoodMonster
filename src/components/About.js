@@ -1,75 +1,41 @@
 import React, { useEffect, useState } from "react";
 import Profile from "./ProfileClass";
 import { Outlet } from "react-router-dom";
+import { IMG_CDN_URL } from "../constants";
 
-const Section = ({title, description, isVisible, setIsVisible})=>{
-    return (
-        <div className="border border-black p-2 m-2">
-            <h1 className="font-bold text-xl">{title}</h1>
-            {
-                isVisible? (
-                    <button onClick={()=>setIsVisible(false)} className="cursor-pointer underline">hide</button>
-                ):
-                (
-                    <button onClick={()=>setIsVisible(true)} className="cursor-pointer underline">Show</button>
-                )
-            }
-            {isVisible && <p>{description}</p>}
-            
-        </div>
-    )
-}
 
 const About = ()=>{
 
-    const [visibleSection, setVisibleSection] = useState("about")
     const [notVisible, setNotvisible] = useState(false);
-    return (<>
-        <Section
-        title={"This is about section of FoodMonster"}
-        description={"lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "}
+    return (
+       <>
+       <div className="p-2">
+        <p className="text-2xl italic text-yellow-400 font-bold">About Us</p>
+        <hr className="w-40 p-1 mb-4 h-px  bg-gray-200 border-0 rounded dark:bg-yellow-500"/>
+        <div className="flex">
+            <div className="mb-16">
+            <p className="text-xl italic text-gray-400 font-bold underline py-2">Our Mission</p>
 
-        isVisible =  {visibleSection=="about" && notVisible==true}
+                <div className="text-base italic text-gray-800 text-bold pl-2">Welcome to our foodMonster, where we strive to make your dining experience as seamless and enjoyable as possible. Our app is built using the powerful React framework and designed using the versatile Tailwind CSS library, ensuring a smooth and visually appealing experience for our users.</div>
 
-        setIsVisible = {notVisible? ()=>{
-            setVisibleSection("about")
-            setNotvisible(false)
-        }:  ()=>{
-            setVisibleSection("about")
-            setNotvisible(true)}
-        }
-        />
+                <h2 className="text-xl italic text-gray-400 font-bold underline py-2 ">Our Team</h2>
+                <p className="text-base italic text-gray-800 text-bold pl-2">Our team is composed of passionate food enthusiasts, developers, and designers who all share the same goal: to provide you with an easy and hassle-free way to order your favorite meals online. We believe that food is not just a necessity, but a way to connect people and cultures. That's why we've worked tirelessly to create an app that reflects our values of inclusivity, diversity, and innovation.</p>
+                <h2 className="text-xl italic text-gray-400 font-bold underline py-2 ">Our Focus</h2>
+                <p className="text-base italic text-gray-800 text-bold pl-2">At our core, we are a customer-centric company. We take your feedback seriously and use it to continuously improve our app. Whether you're looking for a quick and easy meal during a busy day or a special occasion feast, we've got you covered. Our app features a wide variety of cuisines and restaurants to choose from, ensuring that there's something for everyone.</p>
+                <h2 className="text-xl italic text-gray-400 font-bold underline py-2 ">Our Features</h2>
+                <p className="text-base italic text-gray-800 text-bold pl-2">With our user-friendly interface and intuitive navigation, you can easily browse menus, filter by dietary preferences, and place your order in just a few clicks. Plus, our real-time order tracking feature allows you to keep tabs on your delivery status, so you can plan your day accordingly.</p>
+                <h2 className="text-xl italic text-gray-400 font-bold underline py-2 ">Contact Us</h2>
 
-        <Section 
-        title={"This is Team section of FoodMonster"}
-        description={"lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-        
-        isVisible =  {visibleSection=="team" && notVisible==true}
-        setIsVisible = {notVisible? ()=>{
-            setVisibleSection("team")
-            setNotvisible(false)
-        }:  ()=>{
-            setVisibleSection("team")
-            setNotvisible(true)}
-        }
-        />
+                <p className="text-base italic text-gray-800 text-bold pl-2">We're always looking for ways to improve and enhance our app, so if you have any suggestions or feedback, please don't hesitate to get in touch. Thank you for choosing our food ordering app, and we hope you enjoy your meal!</p>
 
-        <Section 
-        title={"This is Career section of FoodMonster"}
-        description={"lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-        
-        isVisible =  {visibleSection=="career" && notVisible==true}
+            </div>
+            <div className="ml-8">
+                <img  src="https://img.freepik.com/free-vector/teamwork-concept-landing-page_52683-20165.jpg?w=1380&t=st=1680366223~exp=1680366823~hmac=96dab45b42e1778fba1f495eda9196d8e32953443097cd707b96269c2ba68ec5" ></img>
+            </div>
+        </div>
+       </div>
+       </>
 
-        setIsVisible = {notVisible? ()=>{
-            setVisibleSection("career")
-            setNotvisible(false)
-        }:  ()=>{
-            setVisibleSection("career")
-            setNotvisible(true)}
-        }
-        />
-
-    </>
     )
 
 }

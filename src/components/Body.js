@@ -42,6 +42,7 @@ const Body = () => {
     <MenuShimmer />
   ) : (
     <>
+      <div className='mb-16'>
       <div className="p-2 mb-2 shadow-md flex justify-center bg-gray-50">
         <div className="">
           <div className="relative mb-4 flex w-full flex-wrap items-stretch border-solid">
@@ -84,6 +85,7 @@ const Body = () => {
             );
           })
         )}
+      </div>
       </div>
     </>
   );

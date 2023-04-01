@@ -9,7 +9,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
 import { ResturantMenu } from './components/ResturantMenu';
-import SignIn from './components/form';
+import SignIn from './components/SignIn';
 import Profile from './components/ProfileClass';
 import { Shimmer } from 'react-shimmer';
 import { Provider } from 'react-redux';
@@ -50,16 +50,9 @@ const router = createBrowserRouter([
                      }
                 ]
             },
-            {
-                path: "/contactUs",
-                element: <ContactUs/>
-            },{
+           {
                 path: "/restaurant/:id",
                 element: <ResturantMenu/>
-            },
-            {
-                path: "/login",
-                element:<SignIn/>
             },
             {
                 path:"/instamart",
@@ -72,7 +65,11 @@ const router = createBrowserRouter([
                 path:'/cart',
                 element:<Cart/>
             }
-        ]
+        ], 
+    },
+    {
+        path: "/login",
+        element:<SignIn/>
     }
     
 ])
