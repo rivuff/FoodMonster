@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const SignIn = ()=>{
     return (
         <>
@@ -24,6 +26,8 @@ const SignIn = ()=>{
         </div>
         <button type="submit" className="text-white bg-yellow-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-3 text-center  ml-36">Submit</button>
         </form>
+        <p className="ml-20 p-2 text-gray-400 font-semibold">Don't have an account ?<Link to='/signup' 
+            className="hover:text-yellow-500 hover:underline"> Sign up</Link></p>
     </div>
     </div>
     </>

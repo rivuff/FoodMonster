@@ -18,7 +18,7 @@ const cartSlice = createSlice({
             console.log(state.items);
         },
         clearCart: (state)=>{
-            console.log("sr"+ state.items);
+            console.log(state.items);
             state.items= [];
         },
         updateItem: (state, action)=>{

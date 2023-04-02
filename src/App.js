@@ -8,13 +8,14 @@ import Error from './components/Error';
 import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
-import { ResturantMenu } from './components/ResturantMenu';
+import { ResturantMenu } from './components/resturantMenu';
 import SignIn from './components/SignIn';
 import Profile from './components/ProfileClass';
 import { Shimmer } from 'react-shimmer';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import Cart from './components/Cart';
+import SignUp from './components/SignUp';
 
 //Chuncking / Code Spliting / lazy loading / Dynamic bundling / on demand loading / dynamic importing
 const Instamart = lazy(()=> import("./components/Instamart"))
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element:<SignIn/>
+    },
+    {
+        path: "/signup",
+        element: <SignUp/>
     }
     
 ])

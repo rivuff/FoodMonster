@@ -40,8 +40,9 @@ export const ResturantMenu = () => {
         })
       );
     } else {
-      dispatch(addItem({ ...item, qty: 1 }));
+      dispatch(addItem({...item, qty: 1 }));
     }
+    
   };
 
   const removeFoodItem = item => {
@@ -79,7 +80,8 @@ export const ResturantMenu = () => {
       (<MenuShimmer />)
     </>
   ) : (
-    <div className="grid justify-center">
+    <>
+    <div> 
       <div className=" bg-slate-50 p-2 m-2">
         <div className="text-2xl font-bold">
           {restaurant?.cards[0]?.card?.card?.info?.name}
@@ -191,7 +193,11 @@ export const ResturantMenu = () => {
           </>
         ))}
       </div>
+      <div>
+      
+      </div>
     </div>
+    </>
 
     //name of restaurants, image url, price, descrition, food items
   );
